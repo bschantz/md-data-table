@@ -1,0 +1,97 @@
+.md-data-table-responsive > tbody > tr{
+  // border: 1px rgba(0, 0, 0, 0.12) solid;
+  display: table;
+  width: 100%;
+  margin-bottom: 30px;
+
+  > td{
+    display: table-row;
+    > table {
+      width: 100%;
+    }
+  }
+
+  thead, tbody{
+    display: table-cell;
+  }
+  tbody{
+    float: right;
+    // float: right;
+    display: table;
+    width: 70%;
+  }
+
+  td{
+    border: none !important;
+    text-align: right !important;
+  }
+}
+
+
+
+
+
+.md-data-table-responsive  {
+    width: 100%;
+    background-color: transparent;
+    margin-top: 4px;
+    margin-bottom: 0;
+
+    &.table-striped {
+      > tbody > tr > td{
+        background-color: @md-bg !important;
+      }
+      > tbody > tr > td:nth-child(odd) {
+        background-color: @md-strip !important;
+      }
+    }
+
+
+      > tbody {
+        > tr {
+          display: block;
+          margin-bottom: 3px;
+          box-shadow:  0 1px 3px 0 rgba(0, 0, 0,0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+          &:first-child{
+            border-top: 1px solid rgba(0, 0, 0, 0.14);
+          }
+          > td {
+            background-color: @md-bg;
+            font-size: @md-font-size;
+            display: block;
+            vertical-align: middle;
+            text-align: right;
+            empty-cells: show;
+          }
+          > td:empty {
+            height: 15px;
+          }
+          > td[data-title]:before {
+            content: attr(data-title);
+            float: left;
+            font-size: @md-font-size;
+          }
+        }
+      }
+}
+
+
+.md-data-table-responsive{
+  margin-top: 0;
+}
+
+.md-data-table-responsive td.md-checkbox-cell > md-checkbox{
+  height: 52px;
+}
+.md-data-table-responsive thead th.md-checkbox-column{
+  display: none;
+}
+.md-data-table-responsive tr[md-select-row] table > tbody > tr > td {
+  padding: 0 24px !important;
+}
+
+.md-data-table-responsive.md-table.md-row-select > tbody > tr > td.md-cell:not(.md-checkbox-cell) {
+  padding-left: 0;
+  padding-right: 0;
+}
