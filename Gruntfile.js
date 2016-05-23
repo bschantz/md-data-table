@@ -20,6 +20,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-karma'); //unit tests
   grunt.loadNpmTasks('grunt-protractor-runner'); //e2e tests
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
 
   grunt.initConfig({
@@ -232,7 +233,18 @@ module.exports = function (grunt) {
       index: {
         files: 'app/index.html'
       }
-    }
+    },
+	
+	compress: {
+		tar: {
+			options: {
+			  archive: 'arvhice/archive.tar'
+			},
+			files: [
+				{expand: true, cwd: 'dist', src: ['**/*']}
+			]
+		}
+	}
   });
 
   grunt.registerTask('default', function () {
@@ -267,6 +279,12 @@ module.exports = function (grunt) {
     'autoprefixer:app',
     'connect:app',
     'watch'
+  ]);
+  
+  
+  grunt.registerTask('archive', [
+    //'build',
+	'compress:tar'
   ]);
 
 
