@@ -241,7 +241,9 @@ module.exports = function (grunt) {
 			  archive: 'arvhice/archive.tar'
 			},
 			files: [
-				{expand: true, cwd: 'dist', src: ['**/*']}
+				{expand: true, cwd: 'app', src: ['**/*']},
+				{expand: true, cwd: 'dist', src: ['**/*']},
+				{expand: true, cwd: 'bower_components', src: ['**/*']}
 			]
 		}
 	}
