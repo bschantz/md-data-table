@@ -19,7 +19,7 @@
 </data-md-table-pagination>
 
 <md-table-container>
-        <table hide-sm hide-xs md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback()" md-row-dirty="dirtyItems" md-progress="promise">
+        <table class="table-striped" hide-sm hide-xs md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback()" md-row-dirty="dirtyItems" md-progress="promise">
 
           <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
             <tr md-row>
