@@ -238,7 +238,7 @@ module.exports = function (grunt) {
 	compress: {
 		tar: {
 			options: {
-			  archive: 'arvhice/archive.tar'
+			  archive: 'archive/archive.tar'
 			},
 			files: [
 				{expand: true, cwd: 'app', src: ['**/*']},
