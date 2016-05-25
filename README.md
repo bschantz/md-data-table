@@ -21,7 +21,8 @@ This software is provided free of charge and without restriction under the [MIT 
 
 ## Demo
 
-A live [demo](http://codepen.io/eh-am/pen/XdLorV)
+A live demo on [codepen](http://codepen.io/eh-am/pen/XdLorV) or
+[an automatically built version](https://dev.tekstack.ca/demo/md-table/index.html)
 
 ## Installation
 
