@@ -234,7 +234,7 @@ module.exports = function (grunt) {
         files: 'app/index.html'
       }
     },
-	
+
 	compress: {
 		tar: {
 			options: {
@@ -267,6 +267,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'jshint:build',
+    'less:app',
     'less:build',
     'autoprefixer:build',
     'cssmin:build',
@@ -282,8 +283,8 @@ module.exports = function (grunt) {
     'connect:app',
     'watch'
   ]);
-  
-  
+
+
   grunt.registerTask('archive', [
     //'build',
 	'compress:tar'
