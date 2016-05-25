@@ -25,8 +25,10 @@
       </div>
     </md-toolbar>
 
+    <div ng-include="'templates/table.html'"></div>
 
-    <md-content class="md-padding" layout="column" >
+
+    <!-- <md-content class="md-padding" layout="column" >
       <div ng-controller="nutritionController">
         <md-card>
           <div layout="row" layout-wrap class="checkboxes">
@@ -40,13 +42,13 @@
             <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
           </div>
         </md-card>
-        
+
         <md-card ng-include="'templates/nutrition-table-responsive.html'">
         </md-card>
-      </div>
+      </div> -->
 
 
-      <div ng-controller="nutritionController">
+      <!-- <div ng-controller="nutritionController">
         <md-card ng-include="'templates/nutrition-table-legacy.html'">
         </md-card>
       </div>
@@ -72,8 +74,8 @@
       <div ng-controller="nutritionController">
         <md-card ng-include="'templates/nutrition-table-checkbox.html'">
         </md-card>
-      </div>
-    </md-content>
+      </div> -->
+    <!-- </md-content> -->
 
     <script type="text/javascript" src="angular/angular.js"></script>
     <script type="text/javascript" src="angular-messages/angular-messages.js"></script>
