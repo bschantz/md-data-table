@@ -8,7 +8,7 @@ function mdTablePagination() {
     tElement.addClass('md-table-pagination');
   }
 
-  function Controller($attrs, $mdUtil, $scope) {
+  function Controller($attrs, $mdUtil, $scope, $element) {
     var self = this;
     var defaultLabel = {
       page: 'Page:',
@@ -61,6 +61,9 @@ function mdTablePagination() {
       if(angular.isFunction(self.onPaginate)) {
         $mdUtil.nextTick(function () {
           self.onPaginate(self.page, self.limit);
+
+          // scroll to the beginning of the table
+          angular.element(document).duScrollToElementAnimated($element.parent());    
         });
       }
     };
@@ -107,7 +110,7 @@ function mdTablePagination() {
     });
   }
 
-  Controller.$inject = ['$attrs', '$mdUtil', '$scope'];
+  Controller.$inject = ['$attrs', '$mdUtil', '$scope', '$element'];
 
   return {
     bindToController: {
