@@ -186,10 +186,10 @@ md-select.md-table-select > .md-select-value > span.md-select-icon:after {
   margin-bottom: 0;
 }
 .md-data-table-responsive.table-striped > tbody > tr > td {
-  background-color: #ffffff !important;
+  background-color: #fcfcfc !important;
 }
 .md-data-table-responsive.table-striped > tbody > tr > td:nth-child(odd) {
-  background-color: #fcfcfc !important;
+  background-color: #ffffff !important;
 }
 .md-data-table-responsive > tbody > tr {
   display: block;
@@ -448,6 +448,6 @@ table.md-table td.md-cell md-select > .md-select-value > span.md-select-icon {
 table.md-table td.md-cell md-select > .md-select-value > span.md-select-icon:after {
   transform: scaleY(0.4) scaleX(0.8);
 }
-table.md-table.table-striped > tbody > tr:nth-child(odd) {
+table.md-table:not(.md-data-table-responsive).table-striped > tbody > tr:nth-child(odd) {
   background-color: #fcfcfc;
 }

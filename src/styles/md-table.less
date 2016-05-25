@@ -225,11 +225,10 @@ table.md-table {
       }
     }
   }
+}
 
-  &.table-striped {
-    > tbody > tr:nth-child(odd) {
-        background-color: @md-strip;
-    }
+table.md-table:not(.md-data-table-responsive).table-striped {
+  > tbody > tr:nth-child(odd) {
+      background-color: @md-strip;
   }
-
 }
