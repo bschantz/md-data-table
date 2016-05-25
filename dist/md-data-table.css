@@ -221,6 +221,10 @@ md-select.md-table-select > .md-select-value > span.md-select-icon:after {
 .md-data-table-responsive td.md-checkbox-cell > md-checkbox {
   height: 52px;
 }
+/* checkbox */
+.md-data-table-responsive > tbody > tr > td.md-checkbox-cell {
+  padding-left: 29px !important;
+}
 .md-data-table-responsive thead th.md-checkbox-column {
   display: none;
 }
