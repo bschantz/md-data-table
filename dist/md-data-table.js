@@ -259,7 +259,7 @@ function mdCell() {
 
 angular.module('md.data.table').directive('mdColumn', mdColumn);
 
-function mdColumn($compile, $mdUtil) {
+function mdColumn($compile, $mdUtil, $timeout) {
 
   function compile(tElement) {
     tElement.addClass('md-column');
@@ -320,7 +320,10 @@ function mdColumn($compile, $mdUtil) {
       if (table.hasClass('md-data-table-responsive')){
         var container = table.parent().parent();
 
-        angular.element(document).duScrollToElementAnimated(container, 0, 1000);
+        $timeout(function(){
+          angular.element(document).duScrollToElementAnimated(container, 0, 1000);
+        }, 1000);
+
       }
 
 
@@ -395,7 +398,7 @@ function mdColumn($compile, $mdUtil) {
   };
 }
 
-mdColumn.$inject = ['$compile', '$mdUtil'];
+mdColumn.$inject = ['$compile', '$mdUtil', '$timeout'];
 
 
 angular.module('md.data.table').factory('$mdTable', mdTableService);
@@ -1838,7 +1841,7 @@ function mdTablePagination() {
     tElement.addClass('md-table-pagination');
   }
 
-  function Controller($attrs, $mdUtil, $scope, $element) {
+  function Controller($attrs, $mdUtil, $scope, $element, $timeout) {
     var self = this;
     var defaultLabel = {
       page: 'Page:',
@@ -1888,12 +1891,15 @@ function mdTablePagination() {
     };
 
     self.onPaginationChange = function () {
+
+      $timeout(function(){
+        // scroll to the beginning of the table
+        angular.element(document).duScrollToElementAnimated($element.parent(), 0, 1000);
+      }, 0);
+
       if(angular.isFunction(self.onPaginate)) {
         $mdUtil.nextTick(function () {
           self.onPaginate(self.page, self.limit);
-
-          // scroll to the beginning of the table
-          angular.element(document).duScrollToElementAnimated($element.parent());    
         });
       }
     };
@@ -1940,7 +1946,7 @@ function mdTablePagination() {
     });
   }
 
-  Controller.$inject = ['$attrs', '$mdUtil', '$scope', '$element'];
+  Controller.$inject = ['$attrs', '$mdUtil', '$scope', '$element', '$timeout'];
 
   return {
     bindToController: {

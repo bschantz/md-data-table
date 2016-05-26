@@ -38,8 +38,6 @@
       </div>
     </md-toolbar>
 
-<md-table-pagination hide-gt-sm md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{desserts.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
-
 <md-table-container>
     <table hide-sm hide-xs md-row-select="options.rowSelection" ng-class="(options.tableStriped) ? 'table-striped' : ''" multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback()" md-row-dirty="dirtyItems" md-progress="promise">
 
