@@ -286,7 +286,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('archive', [
-    //'build',
+    	'build',
 	'compress:tar'
   ]);
 
