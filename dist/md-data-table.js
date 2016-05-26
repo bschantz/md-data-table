@@ -1573,7 +1573,7 @@ function Hash() {
   };
 }
 
-function mdTable() {
+function mdTable($parse) {
 
   function compile(tElement, tAttrs) {
     tElement.addClass('md-table');
@@ -1603,6 +1603,8 @@ function mdTable() {
     self.$$hash = new Hash();
     self.$$columns = {};
     self.dirtyItems = [];
+    self.scope = $scope;
+    self.parse = $parse;
 
     self.rowUpdateCallback = $scope.$mdTable.rowUpdateCallback;
 
@@ -1768,23 +1770,22 @@ function mdTable() {
         });
 
 
-
         if (typeof self.rowUpdateCallback === 'function') {
             //execute the callback for each row
             var i = self.dirtyItems.length;
+            var callback = self.rowUpdateCallback;
+            var errorCallback = function () { //error callback
+                onError(item.oldItem);
+            };
             while (i--) {
                 var item = self.dirtyItems[i];
-
-                (item, function () { //error callback
-                    onError(item.oldItem);
-                });
-
+                callback({ item: item });
                 self.dirtyItems.splice(i, 1); //remove the item from array
             }
         }
     };
 
-    self.processEditSelect = function (rowData,oldItem,onError) {
+    self.processEditSelect = function (rowData, oldItem, onError) {
         //remove duplicates
         $mdTable.removeDuplicates(self.dirtyItems, rowData.id);
 
@@ -1794,25 +1795,24 @@ function mdTable() {
             newItem: rowData
         });
 
-        // console.log('self.rowUpdateCallback', self.rowUpdateCallback);
         //call callback
         if (typeof self.rowUpdateCallback === 'function') {
             //execute the callback for each row
             var i = self.dirtyItems.length;
+            var callback = self.rowUpdateCallback;
             while (i--) {
                 var item = self.dirtyItems[i];
-
-                self.rowUpdateCallback()(item, function () { //error callback
-                    onError();
-                });
-
+                callback({ item: item });
                 self.dirtyItems.splice(i, 1); //remove the item from array
             }
         }
     };
+
+
+
   }
 
-  Controller.$inject = ['$attrs', '$element', '$q', '$scope', '$mdTable'];
+  Controller.$inject = ['$attrs', '$element', '$q', '$scope', '$mdTable', '$parse'];
 
   return {
     bindToController: true,
@@ -1824,7 +1824,6 @@ function mdTable() {
       progress: '=?mdProgress',
       selected: '=ngModel',
       rowSelect: '=mdRowSelect',
-      // not sure
       rowUpdateCallback: '&mdRowUpdateCallback',
       rowClick: '=mdRowClick',
       hasAccess: '@'

@@ -190,8 +190,11 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     }, 2000);
   };
 
-  $scope.rowUpdateCallback = function (item,onError) {
-     alert('item :' + item);
+  $scope.rowUpdateCallback = function (locals) {
+    var oldItem = locals.oldItem;
+    var newItem = locals.newItem;
+
+    alert('row was updated\n' + JSON.stringify(newItem, null, ' '));
   };
 
   $scope.rowClick = function (item){
@@ -203,5 +206,9 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
   };
 
   $scope.toggleContainer = false;
+
+  $scope.addDesert = function (){
+
+  }
 
 }]);
