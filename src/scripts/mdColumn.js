@@ -2,7 +2,7 @@
 
 angular.module('md.data.table').directive('mdColumn', mdColumn);
 
-function mdColumn($compile, $mdUtil) {
+function mdColumn($compile, $mdUtil, $timeout) {
 
   function compile(tElement) {
     tElement.addClass('md-column');
@@ -63,7 +63,10 @@ function mdColumn($compile, $mdUtil) {
       if (table.hasClass('md-data-table-responsive')){
         var container = table.parent().parent();
 
-        angular.element(document).duScrollToElementAnimated(container, 0, 1000);
+        $timeout(function(){
+          angular.element(document).duScrollToElementAnimated(container, 0, 1000);
+        }, 1000);
+
       }
 
 
@@ -138,4 +141,4 @@ function mdColumn($compile, $mdUtil) {
   };
 }
 
-mdColumn.$inject = ['$compile', '$mdUtil'];
+mdColumn.$inject = ['$compile', '$mdUtil', '$timeout'];
