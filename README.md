@@ -696,6 +696,3 @@ Some things to keep in mind when upgrading:
 the elements, be careful with that.
 - For the responsive table, due to its structure, the headers will have to be explicit declared, which means no ng-repeat :(
 - And, of course, always check the documentation (this file)
-
-# Build
-Adding jenkins webhook
