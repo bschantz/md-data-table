@@ -68,10 +68,10 @@
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                 </md-select>
             </td>
-            <td md-cell data="dessert.calories.value">{{dessert.calories.value}}</td>
+            <td md-cell md-editable="number" data="dessert.calories.value">{{dessert.calories.value}}</td>
             <td md-cell field-required="true" field-max-length="100" data="dessert.note">{{ dessert.note | limitTo: 20 }}{{dessert.note.length > 20 ? '...' : ''}}</td>
             <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
-              {{dessert.comment || 'Add a comment'}}
+              {{dessert.comment || 'Add a comment'}} <md-icon class="md-data-table-edit-icon">mode_edit</md-icon>
             </td>
         </tr>
         </tbody>
@@ -83,7 +83,7 @@
     <table class="md-data-table-responsive table-striped" hide-gt-sm data-md-table md-progress="deferred" md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" md-row-update-callback="rowUpdateCallback(item)" data-ng-model="selected" md-row-dirty="dirtyItems">
         <tbody>
 
-          <tr md-select="dessert" 
+          <tr md-select="dessert"
               data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" >
 
             <!--  Name -->
@@ -166,7 +166,7 @@
                 <tbody md-body>
                   <tr md-row>
                     <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
-                      {{dessert.comment || 'Add a comment'}}
+                      {{dessert.comment || 'Add a comment'}} <md-icon class="md-data-table-edit-icon">mode_edit</md-icon>
                     </td>
                   </tr>
                 </tbody>

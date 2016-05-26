@@ -238,7 +238,7 @@ table.md-table td[md-cell][md-editable]:hover{
   cursor: pointer;
 }
 
-table.md-table td[md-cell][md-editable] > md-icon{
+md-icon.md-data-table-edit-icon{
   font-size: 18px;
   margin-left: 5px;
   color: rgba(0, 0, 0, 0.26);
@@ -246,11 +246,13 @@ table.md-table td[md-cell][md-editable] > md-icon{
   transition: transform 0.25s, opacity 0.25s;
 }
 
-table.md-table td[md-cell][md-editable]:hover > md-icon{
+.md-table td:hover > .md-data-table-edit-icon{
+// table.md-table td[md-cell][md-editable]:hover > md-icon{
   opacity: 1;
 }
 // for responsive mode we always show the icon
-table.md-data-table-responsive td[md-cell][md-editable] > md-icon{
+.md-table.md-data-table-responsive td[md-cell] > .md-data-table-edit-icon{
+// table.md-data-table-responsive td[md-cell][md-editable] > md-icon{
   display: inline;
   opacity: 1;
 }

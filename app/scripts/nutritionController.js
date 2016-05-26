@@ -123,10 +123,8 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     event.stopPropagation();
 
     var dialog = {
-      // messages: {
-      //   test: 'I don\'t like tests!'
-      // },
       modelValue: dessert.comment,
+      // placeholder: 'Add a comment',
       placeholder: 'Add a comment',
       save: function (input) {
         dessert.comment = input.$modelValue;
@@ -134,6 +132,8 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
       targetEvent: event,
       title: 'Add a comment',
       validators: {
+        'ng-required': true,
+        'ng-minlength': 3,
         'md-maxlength': 30
       }
     };
