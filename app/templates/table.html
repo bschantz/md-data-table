@@ -44,7 +44,7 @@
     </md-toolbar>
 
 <md-table-container>
-    <table hide-sm hide-xs md-row-select="options.rowSelection" ng-class="(options.tableStriped) ? 'table-striped' : ''" multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback(item, onError)" md-row-dirty="dirtyItems" md-progress="promise">
+    <table hide-sm hide-xs md-row-select="options.rowSelection" ng-class="(options.tableStriped) ? 'table-striped' : ''" multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback(item)" md-row-dirty="dirtyItems" md-progress="promise">
 
       <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
         <tr md-row>
@@ -60,7 +60,7 @@
       </thead>
 
         <tbody md-body>
-        <tr md-row md-select="dessert" md-auto-select md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
+        <tr md-row md-select="dessert" md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
             data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
             <td md-cell md-editable="text" data="dessert.name">{{dessert.name}}</td>
             <td md-cell>
@@ -80,10 +80,10 @@
 
 
     <!--  Responsive -->
-    <table class="md-data-table-responsive table-striped" hide-gt-sm data-md-table md-progress="deferred" md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" data-ng-model="selected" md-row-dirty="dirtyItems">
+    <table class="md-data-table-responsive table-striped" hide-gt-sm data-md-table md-progress="deferred" md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" md-row-update-callback="rowUpdateCallback(item)" data-ng-model="selected" md-row-dirty="dirtyItems">
         <tbody>
 
-          <tr md-select="dessert"
+          <tr md-select="dessert" 
               data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" >
 
             <!--  Name -->
@@ -126,7 +126,7 @@
                 <tbody md-body>
                   <tr md-row>
                     <td md-cell>
-                        <md-select ng-model="dessert.type" placeholder="Other">
+                        <md-select md-select-update-callback ng-model="dessert.type" placeholder="Other">
                             <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                         </md-select>
                     </td>

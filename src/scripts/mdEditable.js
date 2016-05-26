@@ -75,6 +75,12 @@ function mdEditable($mdDialog, moment, $mdTable) {
     function compile(tElement, tAttrs) {
         //find the row
         var row = tElement.parent();
+
+        // if it's in responsive mode
+        if (!$mdTable.getAttr(row, 'ngRepeat')){
+          row = row.parent().parent().parent().parent();
+        }
+
         var ngRepeat = $mdTable.parse($mdTable.getAttr(row, 'ngRepeat'));
 
         //add data item attribute

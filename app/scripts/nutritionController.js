@@ -194,7 +194,8 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     var oldItem = locals.oldItem;
     var newItem = locals.newItem;
 
-    alert('row was updated\n' + JSON.stringify(newItem, null, ' '));
+    console.log('item', locals);
+    // alert('row was updated\n' + JSON.stringify(newItem, null, ' '));
   };
 
   $scope.rowClick = function (item){
