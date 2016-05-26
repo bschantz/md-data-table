@@ -80,6 +80,9 @@ function mdEditable($mdDialog, moment, $mdTable) {
         //add data item attribute
         tAttrs.$set('rowData', ngRepeat.item);
 
+        // add an edit icon
+        tElement.append(' <md-icon>mode_edit</md-icon>');
+
         return link;
     }
 

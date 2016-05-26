@@ -455,3 +455,21 @@ table.md-table td.md-cell md-select > .md-select-value > span.md-select-icon:aft
 table.md-table:not(.md-data-table-responsive).table-striped > tbody > tr:nth-child(odd) {
   background-color: #fcfcfc;
 }
+/* Edit icon for editable */
+table.md-table td[md-cell][md-editable]:hover {
+  cursor: pointer;
+}
+table.md-table td[md-cell][md-editable] > md-icon {
+  font-size: 18px;
+  margin-left: 5px;
+  color: rgba(0, 0, 0, 0.26);
+  opacity: 0;
+  transition: transform 0.25s, opacity 0.25s;
+}
+table.md-table td[md-cell][md-editable]:hover > md-icon {
+  opacity: 1;
+}
+table.md-data-table-responsive td[md-cell][md-editable] > md-icon {
+  display: inline;
+  opacity: 1;
+}
