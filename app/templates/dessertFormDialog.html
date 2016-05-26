@@ -1,0 +1,69 @@
+<!-- <md-dialog ng-cloak>
+    <form name="thisForm" ng-submit="thisForm.$valid && submit()" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add or edit a dessert</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-icon="content:ic_clear_24px"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="form-dialog-content">
+            <div class="md-dialog-content">
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions ng-hide="isSubmitting">
+            <md-button ng-disabled="!thisForm.$valid || isSubmitting" class="md-raised md-primary" type="submit" translate="entity.action.save">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog> -->
+
+
+<md-dialog add-item-dialog="" role="dialog" tabindex="-1" aria-describedby="dialog_27" class="md-transition-in" aria-label="Add Dessert ..." style="">
+  <md-dialog-content class="md-dialog-content" id="dialog_27">
+
+    <h2 class="md-title">Add Dessert</h2>
+
+    <!-- ngIf: item.form.$submitted && item.form.$invalid -->
+
+    <form name="item.form" ng-submit="ctrl.addItem()" class="ng-pristine ng-invalid ng-invalid-required ng-valid-min ng-valid-max" style="">
+
+      <div layout="row" class="input-row layout-row">
+        <md-input-container flex="" class="flex">
+          <label for="input_19">Name</label>
+          <input name="name" ng-model="dessert.name" md-maxlength="20" required="" class="ng-pristine ng-untouched md-input ng-invalid ng-invalid-required" id="input_19" aria-required="true" aria-invalid="true" ng-trim="false" style="">
+        <div class="md-errors-spacer"></div></md-input-container>
+      </div>
+
+      <div layout="row" class="input-row layout-row">
+        <md-input-container flex="" class="flex">
+          <label for="input_22">Carbs (g)</label>
+          <input name="carbs" type="number" min="0" max="99" ng-model="dessert.carbs.value" required="" class="ng-pristine ng-untouched md-input ng-valid-min ng-valid-max ng-invalid ng-invalid-required" id="input_22" aria-required="true" aria-invalid="true" style="">
+        <div class="md-errors-spacer"></div></md-input-container>
+      </div>
+
+      <md-select ng-model="dessert.type" placeholder="Other">
+          <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
+      </md-select>
+
+      <div layout="row" class="input-row layout-row">
+        <md-input-container flex="" class="flex">
+          <label for="input_23">Note</label>
+          <textarea name="name" ng-model="dessert.note" rows="3" cols="20"></textarea>
+        <div class="md-errors-spacer"></div></md-input-container>
+      </div>
+
+    </form>
+
+  </md-dialog-content>
+
+  <div class="md-actions">
+    <button class="md-primary md-button md-ink-ripple" type="button" ng-click="addItem()" ng-disabled="item.form.$invalid" aria-label="Add Item" aria-disabled="true" disabled="disabled"><span>Add Item</span></button>
+    <button class="md-primary md-button md-ink-ripple" type="button" ng-click="cancel()" aria-label="Cancel"><span>Cancel</span></button>
+  </div>
+
+<div class="md-dialog-focus-trap" tabindex="0"></div></md-dialog>

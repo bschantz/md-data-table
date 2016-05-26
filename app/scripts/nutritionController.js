@@ -1,4 +1,4 @@
-angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdEditDialog', '$q', '$timeout', '$scope', function ($http, $mdEditDialog, $q, $timeout, $scope) {
+angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdEditDialog', '$q', '$timeout', '$scope', '$mdDialog', 'nutritionService', function ($http, $mdEditDialog, $q, $timeout, $scope, $mdDialog, nutritionService) {
   'use strict';
 
   $scope.options = {
@@ -85,8 +85,11 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     orderBy: 'comment'
   } */];
 
-  $http.get('desserts.json').then(function (desserts) {
-    $scope.desserts = desserts.data;
+  $scope.desserts = nutritionService.desserts;
+
+
+  // $http.get('desserts.json').then(function (desserts) {
+  //   $scope.desserts = desserts.data;
 
     // $scope.selected.push($scope.desserts.data[1]);
 
@@ -117,7 +120,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     // $scope.promise = $timeout(function () {
     //   $scope.desserts = desserts.data;
     // }, 1000);
-  });
+  // });
 
   $scope.editComment = function (event, dessert) {
     event.stopPropagation();
@@ -208,7 +211,27 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
 
   $scope.toggleContainer = false;
 
-  $scope.addDesert = function (){
+  $scope.addDessert = function (){
+    console.log('add dessert');
+
+    $mdDialog.show({
+        controller: 'DessertFormDialogController',
+        templateUrl: 'templates/dessertFormDialog.html',
+        // locals: {
+        //     isEditing: isEditing,
+        //     physicianId: physicianId
+        // },
+        parent: angular.element(document.body),
+        clickOutsideToClose: true
+    }).then(function (result) {
+        // resetSearch();
+
+        // if (result && result == 'success') {
+        //ctrl.loadAll();
+        // }
+    }, function () {
+        //cancelled
+    });
 
   }
 
