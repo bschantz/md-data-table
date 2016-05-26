@@ -135,6 +135,7 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish'),
+		reporterOutput: "",
         force: true
       },
       build: 'src/**/*.js',
@@ -286,7 +287,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('archive', [
-    //'build',
+    	'build',
 	'compress:tar'
   ]);
 
