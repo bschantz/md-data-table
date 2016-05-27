@@ -9,23 +9,20 @@ angular.module('nutritionApp').controller('DessertFormDialogController', ['$mdDi
   $scope.isEditing = isEditing;
 
 
-  function success(dessert) {
-    $mdDialog.hide(dessert);
-  }
-
   $scope.save = function(){
     var item = $scope.dessert;
 
     $scope.item.form.$setSubmitted();
-    if(!$scope.item.form.$valid) return;
+    if(!$scope.item.form.$valid){ return; }
 
     if ($scope.isEditing){
       nutritionService.updateItem(item);
     } else {
       nutritionService.add(item);
     }
+
     $mdDialog.hide(item);
-  }
+  };
 
 
 }]);

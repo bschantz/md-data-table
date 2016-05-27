@@ -80,10 +80,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     numeric: true,
     orderBy: 'iron.value',
     unit: '%'
-  },/* {
-    name: 'Comments',
-    orderBy: 'comment'
-  } */];
+  }];
 
   $scope.desserts = nutritionService.desserts;
 
@@ -92,7 +89,6 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
 
     var dialog = {
       modelValue: dessert.comment,
-      // placeholder: 'Add a comment',
       placeholder: 'Add a comment',
       save: function (input) {
         dessert.comment = input.$modelValue;
@@ -190,7 +186,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     }, function () {
         //cancelled
     });
-  }
+  };
 
   //Editing an item
   $scope.editSelectedDessert = function(dessert){
@@ -199,8 +195,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
         templateUrl: 'templates/dessertFormDialog.html',
         locals: {
           dessert: dessert,
-          isEditing: true,
-        //     physicianId: physicianId
+          isEditing: true
         },
         parent: angular.element(document.body),
         clickOutsideToClose: true
@@ -209,6 +204,6 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     }, function () {
         //cancelled
     });
-  }
+  };
 
 }]);
