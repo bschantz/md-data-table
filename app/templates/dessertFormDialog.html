@@ -1,36 +1,19 @@
-<!-- <md-dialog ng-cloak>
-    <form name="thisForm" ng-submit="thisForm.$valid && submit()" novalidate>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Add or edit a dessert</h2>
-                <span flex></span>
-                <md-button type="button" class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-icon="content:ic_clear_24px"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+<md-dialog add-item-dialog="" role="dialog" tabindex="-1" class="md-transition-in" aria-label="Add Dessert ..." style="">
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+          <h2 translate="pidaApp.salaries.detail.title">Add/Edit Dessert</h2>
+          <span flex></span>
+          <md-button type="button" class="md-icon-button" ng-click="cancel()">
+              <md-icon>clear</md-icon>
+          </md-button>
+      </div>
+  </md-toolbar>
 
-        <md-dialog-content class="form-dialog-content">
-            <div class="md-dialog-content">
-            </div>
-        </md-dialog-content>
-        <md-dialog-actions ng-hide="isSubmitting">
-            <md-button ng-disabled="!thisForm.$valid || isSubmitting" class="md-raised md-primary" type="submit" translate="entity.action.save">
-                Save
-            </md-button>
-        </md-dialog-actions>
-    </form>
-</md-dialog> -->
+  <md-dialog-content class="md-dialog-content">
 
+    <h2 class="md-title">Dessert</h2>
 
-<md-dialog add-item-dialog="" role="dialog" tabindex="-1" aria-describedby="dialog_27" class="md-transition-in" aria-label="Add Dessert ..." style="">
-  <md-dialog-content class="md-dialog-content" id="dialog_27">
-
-    <h2 class="md-title">Add Dessert</h2>
-
-    <!-- ngIf: item.form.$submitted && item.form.$invalid -->
-
-    <form name="item.form" ng-submit="ctrl.addItem()" class="ng-pristine ng-invalid ng-invalid-required ng-valid-min ng-valid-max" style="">
+    <form name="item.form" ng-submit="save()" class="ng-pristine ng-invalid ng-invalid-required ng-valid-min ng-valid-max" style="">
 
       <div layout="row" class="input-row layout-row">
         <md-input-container flex="" class="flex">
