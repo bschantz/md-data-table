@@ -87,41 +87,6 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
 
   $scope.desserts = nutritionService.desserts;
 
-
-  // $http.get('desserts.json').then(function (desserts) {
-  //   $scope.desserts = desserts.data;
-
-    // $scope.selected.push($scope.desserts.data[1]);
-
-    // $scope.selected.push({
-    //   name: 'Ice cream sandwich',
-    //   type: 'Ice cream',
-    //   calories: { value: 237.0 },
-    //   fat: { value: 9.0 },
-    //   carbs: { value: 37.0 },
-    //   protein: { value: 4.3 },
-    //   sodium: { value: 129.0 },
-    //   calcium: { value: 8.0 },
-    //   iron: { value: 1.0 }
-    // });
-
-    // $scope.selected.push({
-    //   name: 'Eclair',
-    //   type: 'Pastry',
-    //   calories: { value:  262.0 },
-    //   fat: { value: 16.0 },
-    //   carbs: { value: 24.0 },
-    //   protein: { value:  6.0 },
-    //   sodium: { value: 337.0 },
-    //   calcium: { value:  6.0 },
-    //   iron: { value: 7.0 }
-    // });
-
-    // $scope.promise = $timeout(function () {
-    //   $scope.desserts = desserts.data;
-    // }, 1000);
-  // });
-
   $scope.editComment = function (event, dessert) {
     event.stopPropagation();
 
@@ -211,28 +176,39 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
 
   $scope.toggleContainer = false;
 
-  $scope.addDessert = function (){
-    console.log('add dessert');
 
+  //Creating an item
+  $scope.addDessert = function (){
     $mdDialog.show({
         controller: 'DessertFormDialogController',
         templateUrl: 'templates/dessertFormDialog.html',
-        // locals: {
-        //     isEditing: isEditing,
-        //     physicianId: physicianId
-        // },
+        locals: { dessert: undefined, isEditing: false },
         parent: angular.element(document.body),
         clickOutsideToClose: true
     }).then(function (result) {
-        // resetSearch();
-
-        // if (result && result == 'success') {
-        //ctrl.loadAll();
-        // }
+      console.log('Created: ', result);
     }, function () {
         //cancelled
     });
+  }
 
+  //Editing an item
+  $scope.editSelectedDessert = function(dessert){
+    $mdDialog.show({
+        controller: 'DessertFormDialogController',
+        templateUrl: 'templates/dessertFormDialog.html',
+        locals: {
+          dessert: dessert,
+          isEditing: true,
+        //     physicianId: physicianId
+        },
+        parent: angular.element(document.body),
+        clickOutsideToClose: true
+    }).then(function (result) {
+      console.log('Updated: ', result);
+    }, function () {
+        //cancelled
+    });
   }
 
 }]);

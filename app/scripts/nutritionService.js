@@ -1,4 +1,6 @@
 angular.module('nutritionApp').factory('nutritionService', function() {
+  'use strict';
+
   var desserts = {
     "count": 11,
     "data": [
@@ -160,6 +162,17 @@ angular.module('nutritionApp').factory('nutritionService', function() {
        item.id = desserts.count;
 
        desserts.data.push(item);
+     },
+     updateItem: function(item){
+       // if we find an item with specific id
+       for (var i = 0; i < desserts.data.length; i++){
+         if (desserts.data[i].id == item.id){
+           desserts.data[i] = item;
+
+           return true;
+         }
+       }
+       throw new Error("Updating a dessert which doesn't exist.");
      }
    };
 

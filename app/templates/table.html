@@ -40,6 +40,11 @@
     <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
       <div class="md-toolbar-tools">
         <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+        <span flex></span>
+        <md-button
+                   ng-click="editSelectedDessert(selected[0])"
+                   ng-show="selected.length === 1">EDIT
+        </md-button>
       </div>
     </md-toolbar>
 
