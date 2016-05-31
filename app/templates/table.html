@@ -45,6 +45,10 @@
                    ng-click="editSelectedDessert(selected[0])"
                    ng-show="selected.length === 1">EDIT
         </md-button>
+        <md-button
+                   ng-click="deleteSelectedDessert(selected)"
+                   ng-show="selected.length >= 1"><md-icon>delete</md-icon>
+        </md-button>
       </div>
     </md-toolbar>
 

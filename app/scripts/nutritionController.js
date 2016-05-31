@@ -206,4 +206,17 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
     });
   };
 
+  $scope.deleteSelectedDessert = function(selectedItems){
+    var items = selectedItems.slice();
+
+    items.forEach(function (item){
+      //deselect item
+      $scope.selected.splice($scope.selected.indexOf(item), 1);
+
+      //delete it
+      nutritionService.deleteItem(item);
+      console.log('selected after deleting', $scope.selected);
+    });
+  }
+
 }]);

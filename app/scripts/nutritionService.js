@@ -173,6 +173,17 @@ angular.module('nutritionApp').factory('nutritionService', function() {
          }
        }
        throw new Error('Updating a dessert which doesnt exist.');
+     },
+     deleteItem: function(item){
+       // if we find an item with specific id
+       for (var i = 0; i < desserts.data.length; i++){
+         if (desserts.data[i].id == item.id){
+           desserts.data.splice(desserts.data.indexOf(item), 1);
+
+           return true;
+         }
+       }
+       throw new Error('Deleting a dessert which doesnt exist.');
      }
    };
 
