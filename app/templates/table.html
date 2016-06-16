@@ -16,7 +16,7 @@
 
   <md-card>
 
-    <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+    <md-toolbar class="md-table-toolbar" ng-hide="options.rowSelection && selected.length">
       <div class="md-toolbar-tools">
         <span>Nutrition</span>
         <div flex></div>
@@ -53,10 +53,10 @@
     </md-toolbar>
 
 <md-table-container>
-    <table id="md-data-table-1" hide-sm hide-xs md-row-select="options.rowSelection" ng-class="(options.tableStriped) ? 'table-striped' : ''" multiple="{{options.multiSelect}}" data-ng-model="selected" ng-show="!columnMode" data-md-table md-row-update-callback="rowUpdateCallback(item)" md-row-dirty="dirtyItems" md-progress="promise">
+    <table id="md-data-table-1" ng-class="{ 'md-data-table-card-list' : !$mdMedia('gt-sm'),  'table-striped': options.tableStriped }" md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" data-ng-model="selected" data-md-table md-row-update-callback="rowUpdateCallback(item)" md-row-dirty="dirtyItems" md-progress="promise">
 
       <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-        <tr md-row>
+        <tr md-row md-row-select>
           <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
           <th md-column md:order:by="type"><span>Type</span></th>
           <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
@@ -71,117 +71,18 @@
         <tbody md-body>
         <tr md-row md-select="dessert" md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
             data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-            <td md-cell md-editable="text" data="dessert.name">{{dessert.name}}</td>
-            <td md-cell>
+            <td md-cell data-title="Name" data="dessert.name">{{dessert.name}}</td>
+            <td md-cell data-title="Type">
                 <md-select md-select-update-callback ng-model="dessert.type" placeholder="Other">
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                 </md-select>
             </td>
-            <td md-cell md-editable="number" data="dessert.calories.value">{{dessert.calories.value}}</td>
-            <td md-cell field-required="true" field-max-length="100" data="dessert.note">{{ dessert.note | limitTo: 20 }}{{dessert.note.length > 20 ? '...' : ''}}</td>
-            <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+            <td md-cell data-title="Calories" data="dessert.calories.value">{{dessert.calories.value}}</td>
+            <td md-cell data-title="Note" field-required="true" field-max-length="100" data="dessert.note">{{ dessert.note | limitTo: 20 }}{{dessert.note.length > 20 ? '...' : ''}}</td>
+            <td md-cell data-title="Comment" ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
               {{dessert.comment || 'Add a comment'}} <md-icon class="md-data-table-edit-icon">mode_edit</md-icon>
             </td>
         </tr>
-        </tbody>
-    </table>
-
-
-
-    <!--  Responsive -->
-    <table class="md-data-table-responsive table-striped" hide-gt-sm data-md-table md-progress="deferred" md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" md-row-update-callback="rowUpdateCallback(item)" data-ng-model="selected" md-row-dirty="dirtyItems">
-        <tbody>
-
-          <tr md-select="dessert"
-              data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" >
-
-            <!--  Name -->
-            <td>
-              <table>
-                <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder" style="display: table-cell;">
-                  <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
-                </thead>
-                <tbody md-body>
-                  <tr md-row>
-                    <td md-cell md-editable="text" data="dessert.name">{{dessert.name}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-
-
-            <!--  Carbs -->
-            <td>
-              <table>
-                <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-                  <th md-column data-md-numeric data-md-order-by="carbs.value"><span>Carbs (g)</span></th>
-                </thead>
-                <tbody md-body>
-                  <tr md-row>
-                    <td md-cell>{{ dessert.carbs.value }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-
-            <!--  Type -->
-            <td>
-              <table>
-                <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-                  <tr>
-                  <th md-column md:order:by="type"><span>Type</span></th>
-                  </tr>
-                </thead>
-                <tbody md-body>
-                  <tr md-row>
-                    <td md-cell>
-                        <md-select md-select-update-callback ng-model="dessert.type" placeholder="Other">
-                            <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
-                        </md-select>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-
-            <!--  Note -->
-            <td>
-              <table>
-                <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-                  <tr>
-                  <th md-column data-md-desc><span>Note</span></th>
-                  </tr>
-                </thead>
-                <tbody md-body>
-                  <tr md-row>
-                    <td md-cell field-required="true" field-max-length="100" data="dessert.note">{{ dessert.note }}{{dessert.note.length > 20 ? '...' : ''}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-
-
-            <!--  Comments -->
-            <td>
-              <table>
-                <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-                  <tr>
-                    <th md-column data-md-order-by="comment">
-                      <md-icon>comments</md-icon>
-                      <span>Comments</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody md-body>
-                  <tr md-row>
-                    <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
-                      {{dessert.comment || 'Add a comment'}} <md-icon class="md-data-table-edit-icon">mode_edit</md-icon>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
         </tbody>
     </table>
 </md-table-container>

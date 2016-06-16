@@ -1,4 +1,4 @@
-angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdEditDialog', '$q', '$timeout', '$scope', '$mdDialog', 'nutritionService', function ($http, $mdEditDialog, $q, $timeout, $scope, $mdDialog, nutritionService) {
+angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdMedia', '$mdEditDialog', '$q', '$timeout', '$scope', '$mdDialog', 'nutritionService', function ($http, $mdMedia, $mdEditDialog, $q, $timeout, $scope, $mdDialog, nutritionService) {
   'use strict';
 
   $scope.options = {
@@ -15,6 +15,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdE
 
   $scope.selected = [];
   $scope.dirtyItems = [];
+  $scope.$mdMedia = $mdMedia;
 
   $scope.limitOptions = [5, 10, 15, {
     label: 'All',
