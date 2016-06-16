@@ -150,6 +150,34 @@ angular.module('nutritionApp').factory('nutritionService', function() {
         'sodium': { 'value': 54.0 },
         'calcium': { 'value': 12.0 },
         'iron': { 'value': 6.0 }
+      },
+      {
+        'id': '12',
+        'name': 'KitKat',
+        'type': 'Candy',
+        'date': '2015-01-01',
+        'calories': { 'value': 518.0 },
+        'note':'Testing note filed, blah, blah, blah,blah, blah, blah,blah, blah, blah',
+        'fat': { 'value': 26.0 },
+        'carbs': { 'value': 65.0 },
+        'protein': { 'value': 7.0 },
+        'sodium': { 'value': 54.0 },
+        'calcium': { 'value': 12.0 },
+        'iron': { 'value': 6.0 }
+      },
+      {
+        'id': '13',
+        'name': 'KitKat',
+        'type': 'Candy',
+        'date': '2015-01-01',
+        'calories': { 'value': 518.0 },
+        'note':'Testing note filed, blah, blah, blah,blah, blah, blah,blah, blah, blah',
+        'fat': { 'value': 26.0 },
+        'carbs': { 'value': 65.0 },
+        'protein': { 'value': 7.0 },
+        'sodium': { 'value': 54.0 },
+        'calcium': { 'value': 12.0 },
+        'iron': { 'value': 6.0 }
       }
     ]
   };

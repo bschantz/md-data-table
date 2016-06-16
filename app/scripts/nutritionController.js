@@ -30,6 +30,14 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
     page: 1
   };
 
+  $scope.nextPageInfiniteScroll = function(){
+    // TODO
+    // roll your own nextPage function
+    if ($scope.query.limit + 5 > $scope.desserts.count) return;
+    $scope.query.limit += 5;
+  }
+
+
   // for testing ngRepeat
   $scope.columns = [{
     name: 'Dessert',
