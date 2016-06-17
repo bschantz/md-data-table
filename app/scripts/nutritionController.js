@@ -16,6 +16,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
   $scope.selected = [];
   $scope.dirtyItems = [];
   $scope.$mdMedia = $mdMedia;
+  $scope.cardModeOn = function(){ return !$mdMedia('gt-sm'); }
 
   $scope.limitOptions = [5, 10, 15, {
     label: 'All',
@@ -31,8 +32,11 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
   };
 
   $scope.nextPageInfiniteScroll = function(){
-    // TODO
-    // roll your own nextPage function
+    // this is the most important part as it will control wether the infiniteScroll is working or not
+    // we need to check if we are in cardMode, if so let's disable the infinite scroll
+    if (!$scope.cardModeOn) return;
+
+    console.log('next page');
     if ($scope.query.limit + 5 > $scope.desserts.count) return;
     $scope.query.limit += 5;
   }

@@ -31,9 +31,6 @@ function mdTable($parse) {
   function compile(tElement, tAttrs) {
     tElement.addClass('md-table');
 
-    console.log(tAttrs);
-    console.log('tem mdCardMode', tAttrs.hasOwnProperty('mdCardMode'));
-
     if(tAttrs.hasOwnProperty('mdProgress')) {
       var body = tElement.find('tbody')[0];
       var progress = angular.element('<thead class="md-table-progress">');
@@ -46,7 +43,6 @@ function mdTable($parse) {
 
     var rows = tElement.find('tbody').find('tr');
     rows.attr('md-select-row', ''); //always add this attribute, use other attributes to control this directive
-
   }
 
   function Controller($attrs, $element, $q, $scope, $mdTable) {
@@ -180,18 +176,16 @@ function mdTable($parse) {
       $scope.$watch('$mdTable.progress', self.queuePromise);
     }
 
+
     if($attrs.hasOwnProperty('mdCardMode')) {
-
-
       // TODO: refactor
+      // for now this part doesn't have much value and could be changed for
+      // a ng-class, but is better to encapsulate the class name
       if ($mdTable.cardMode === true){
-        element.attr('md-virtual-repeat-container', '');
         $element.addClass('md-data-table-card-list');
       }
 
       $scope.$watch('$mdTable.cardMode', function(newValue){
-        console.log('mudou valor para ', newValue);
-
         if (newValue === true){
           $element.attr('md-virtual-repeat-container', '');
           $element.addClass('md-data-table-card-list');
