@@ -3,10 +3,6 @@
 
 #### Version 0.10.13
 ###### April 26, 2016
-
-
-#### Version 0.10.9
-###### June 17, 2016
 **Rewrite**
 Rewrote the responsiveness approach to use the same table, as opposed to having two different tables.
 
@@ -16,7 +12,8 @@ Rewrote the responsiveness approach to use the same table, as opposed to having 
 * (Possible to have) Actions for each card
 
 
-
+#### Version 0.10.9
+###### June 17, 2016
 **Bug Fix**
 
 * Removing one time binding from pagination limit options.
