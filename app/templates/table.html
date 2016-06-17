@@ -11,6 +11,7 @@
       <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
       <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
       <md-checkbox ng-model="options.tableStriped">Stripes</md-checkbox>
+      <md-checkbox ng-model="options.cardActions">Card Actions</md-checkbox>
     </div>
   </md-card>
 
@@ -68,7 +69,7 @@
       </thead>
 
         <tbody md-body infinite-scroll='nextPageInfiniteScroll()'>
-        <tr md-row md-select="dessert" md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
+        <tr md-row md-select="dessert" md-select-id="name" data-md-on-select="log" md-on-deselect="deselect"
             data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
             <td md-cell md-editable="text" data-title="Name" data="dessert.name">{{dessert.name}}</td>
             <td md-cell data-title="Type">
@@ -80,6 +81,12 @@
             <td md-cell data-title="Note" field-required="true" field-max-length="100" data="dessert.note">{{ dessert.note | limitTo: 20 }}{{dessert.note.length > 20 ? '...' : ''}}</td>
             <td md-cell data-title="Comment" ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
               {{dessert.comment || 'Add a comment'}} <md-icon class="md-data-table-edit-icon">mode_edit</md-icon>
+            </td>
+            <td md-cell ng-show="cardModeOn() && options.cardActions">
+              <md-card-actions layout="column" layout-align="end center" class="layout-align-end-center layout-row">
+                <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 1"><span class="ng-scope">Action 1</span></button>
+                <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 2"><span class="ng-scope">Action 2</span></button>
+              </md-card-actions>
             </td>
         </tr>
         </tbody>

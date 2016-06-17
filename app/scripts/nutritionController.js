@@ -10,7 +10,8 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
     boundaryLinks: false,
     limitSelect: true,
     pageSelect: true,
-    tableStriped: true
+    tableStriped: true,
+    cardActions: true
   };
 
   $scope.selected = [];
@@ -35,23 +36,19 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
     // this is the most important part as it will control wether the infiniteScroll is working or not
     // we need to check if we are in cardMode, if so let's disable the infinite scroll
 
-    if (!$scope.cardModeOn()){
-      // come back to normal
-      return;
-    }
+    // we only want the infinite scroll to work with
+    if (!$scope.cardModeOn()) return;
 
-    console.log('next page');
+
     if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
     $scope.query.limit += 5;
   }
 
   $scope.$watch($scope.cardModeOn, function(cardMode){
-    console.log('changed cardMode', cardMode);
-    if (cardMode){
-      $scope.query.page = 1;
-    }else{
-      $scope.query.limit = 5;
-    }
+    // if we are in cardMode, let's start from page 1
+    if (cardMode) $scope.query.page = 1;
+    //otherwise, let's set the page limit back to the normal
+    else $scope.query.limit = 5;
   });
 
 
