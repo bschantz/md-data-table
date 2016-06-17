@@ -34,12 +34,25 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
   $scope.nextPageInfiniteScroll = function(){
     // this is the most important part as it will control wether the infiniteScroll is working or not
     // we need to check if we are in cardMode, if so let's disable the infinite scroll
-    if (!$scope.cardModeOn) return;
+
+    if (!$scope.cardModeOn()){
+      // come back to normal
+      return;
+    }
 
     console.log('next page');
     if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
     $scope.query.limit += 5;
   }
+
+  $scope.$watch($scope.cardModeOn, function(cardMode){
+    console.log('changed cardMode', cardMode);
+    if (cardMode){
+      $scope.query.page = 1;
+    }else{
+      $scope.query.limit = 5;
+    }
+  });
 
 
   // for testing ngRepeat
