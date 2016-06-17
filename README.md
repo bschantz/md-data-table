@@ -1,13 +1,10 @@
 # Material Design Data Table
 
-This module is an effort to implement Material Design data tables in [Angular Material](https://material.angularjs.org/latest/#/). Data tables are used to present raw data sets and usually appear in desktop enterprise applications. Data tables are particularly useful for visualizing and manipulating large data sets.
-
-Specification for Material Design data tables can be found [here](http://www.google.com/design/spec/components/data-tables.html).
+This repository is a fork from [daniel-nagy](https://github.com/daniel-nagy/md-data-table) to fit our needs at [TranslucentComputing](http://www.translucentcomputing.com/), the main features are inline editing and a "card mode" for responsiveness.
 
 * [License](#license)
 * [Demo](#demo)
 * [Installation](#installation)
-* [Usage](#usage)
 * [Change Log](CHANGELOG.md)
 * [API Documentation](#api-documentation)
 * [Contributing](#contributing)
@@ -31,7 +28,7 @@ A live demo on [codepen](http://codepen.io/eh-am/pen/XdLorV) or
 This package is installable through the Bower package manager.
 
 ```
-bower install angular-material-data-table --save
+bower install TranslucentComputing/md-data-table --save
 ```
 
 In your `index.html` file, include the data table module and style sheet.
@@ -54,86 +51,13 @@ angular.module('myApp', ['ngMaterial', 'md.data.table']);
 In addition, this package may be installed using npm.
 
 ```
-npm install angular-material-data-table --save
+npm install TranslucentComputing/md-data-table --save
 ```
 
 You may use Browserify to inject this module into your application.
 
 ```javascript
 angular.module('myApp', [require('angular-material-data-table')]);
-```
-
-## Usage
-
-**Example Controller**
-
-```javascript
-
-// Assume we have a $nutrition service that provides an API for communicating with the server
-
-angular.module('demoApp').controller('sampleController', ['$nutrition', '$scope', function ($nutrition, $scope) {
-  'use strict';
-
-  $scope.selected = [];
-
-  $scope.query = {
-    order: 'name',
-    limit: 5,
-    page: 1
-  };
-
-  function success(desserts) {
-    $scope.desserts = desserts;
-  }
-
-  $scope.getDesserts = function () {
-    $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
-  };
-
-}]);
-```
-
-**Example Template**
-
-```html
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Nutrition</span>
-  </div>
-</md-toolbar>
-
-<!-- exact table from live demo -->
-<md-table-container>
-  <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-      <tr md-row>
-        <th md-column md-order-by="nameToLower"><span>Dessert (100g serving)</span></th>
-        <th md-column md-numeric md-order-by="calories.value"><span>Calories</span></th>
-        <th md-column md-numeric>Fat (g)</th>
-        <th md-column md-numeric>Carbs (g)</th>
-        <th md-column md-numeric>Protein (g)</th>
-        <th md-column md-numeric>Sodium (mg)</th>
-        <th md-column md-numeric>Calcium (%)</th>
-        <th md-column md-numeric>Iron (%)</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in desserts.data">
-        <td md-cell>{{dessert.name}}</td>
-        <td md-cell>{{dessert.calories.value}}</td>
-        <td md-cell>{{dessert.fat.value | number: 1}}</td>
-        <td md-cell>{{dessert.carbs.value}}</td>
-        <td md-cell>{{dessert.protein.value | number: 1}}</td>
-        <td md-cell>{{dessert.sodium.value}}</td>
-        <td md-cell>{{dessert.calcium.value}}{{dessert.calcium.unit}}</td>
-        <td md-cell>{{dessert.iron.value}}{{dessert.iron.unit}}</td>
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
-
-<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
-
 ```
 
 ## API Documentation
@@ -577,106 +501,63 @@ grunt build
 
 Create a pull request!
 
-# Responsiveness
+# Responsiveness (aka Card mode)
 
-The idea here is to add a second table, which you will show when you desire (probably on mobile).
-This second table is similar to the original one, however it takes some DOM changes:
- - All the attributes for the table should be the same, for example, if the original table contains `data-md-table md-progress="deferred" data-ng-model="selected" md-row-update-callback="rowUpdateCallback()"` the responsive one should also contain the same attributes. ** The only additional attribute is the class
-`md-data-table-responsive`.
+You will have to create a function/variable on the page's scope to keep track on wether the responsiveness should be activated. For example, for the NutritionApp we use:
 
-- The structure has to be like:
-`table -> tbody -> tr -> td`
-Each TD corresponds to a row
-
-  Inside this td we have to have another table, with both thead and tbody.
-
-Where the head is exactly the same as in the original one. The body is also the same.
-Let's see an example to make it clear.
-
-## Example  
-Given the original table with two fields:
-```
-        <table hide-sm hide-xs md-row-select="options.rowSelection"  multiple="{{options.multiSelect}}" data-ng-model="selected" id="md-data-table-1" ng-show="!columnMode" data-md-table md-progress="deferred" md-row-update-callback="rowUpdateCallback()" md-row-dirty="dirtyItems" md-progress="promise">
-
-          <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-            <tr md-row>
-              <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
-              <th md-column md:order:by="type"><span>Type</span></th>
-            </tr>
-          </thead>
-
-          <tbody md-body>
-            <tr md-row md-select="dessert" md-auto-select md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
-                data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                <td md-cell data="dessert.name">{{dessert.name}}</td>
-                <td md-cell>
-                    <md-select ng-model="dessert.type" placeholder="Other" ng-change="rowUpdateCallback()">
-                        <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
-                    </md-select>
-                </td>
-              </tr>
-            </tbody>
-          </table>        
+```javascript
+$scope.cardModeOn = function(){ return !$mdMedia('gt-sm'); }
 ```
 
-The responsive one should be something along these terms:
+After that you have to tell md-data-table of that variable:
 ```
-<table class="md-data-table-responsive table-striped" hide-gt-sm data-md-table md-progress="deferred" data-ng-model="selected" md-row-update-callback="rowUpdateCallback()" md-row-dirty="dirtyItems">
-    <tbody>
-
-      <tr md-auto-select
-          data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-
-          <!--  Name -->
-          <td>
-            <table>
-              <!--  Header -->
-              <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder" style="display: table-cell;">
-                <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
-              </thead>
-              <!--  Body -->
-              <tbody md-body>
-                <tr md-row>
-                  <td md-cell data="dessert.name">{{dessert.name}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-
-          <!--  Type -->
-          <td>
-            <table>
-              <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-                <tr>
-                <th md-column md:order:by="type"><span>Type</span></th>
-                </tr>
-              </thead>
-              <tbody md-body>
-                <tr md-row>
-                  <td md-cell>
-                      <md-select ng-model="dessert.type" placeholder="Other" ng-change="rowUpdateCallback()">
-                          <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
-                      </md-select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-
-      </tr>
-</table>          
+<table data-md-table md-card-mode="cardModeOn()">
 ```
 
+Now, if you want infinite scroll for the card mode (and you probably want), add this to the ```<tbody>```:
+```
+<tbody md-body infinite-scroll='nextPageInfiniteScroll()'>
+```
 
-Which will be rendered as
+This function should be acessible from the page's scope. It will be called when the user reaches the end of the table, so this function should load more data.
+As each one has a different implementation for loading data, I will leave one as an example. Just **remember to do nothing when you are NOT in cardMode.**
+```javascript
+$scope.nextPageInfiniteScroll = function(){
+  // we only want the infinite scroll to work with
+  if (!$scope.cardModeOn()) return;
 
-(The original one)
-![](docs/ec73f4e141d5f7ba3d2d1ac5dec787af.png)
 
-Responsive
-![](docs/b0731d3bf94a3c917a6175e58f87cb13.png)
+  if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
+  $scope.query.limit += 5;
+}
+```
 
+You probably want to reset the status (such as the current page) when the user toggle between card mode and normal mode, do as:
+```javascript
+$scope.$watch($scope.cardModeOn, function(cardMode){
+  // if we are in cardMode, let's start from page 1
+  if (cardMode) $scope.query.page = 1;
+  //otherwise, let's set the page limit back to the normal
+  else $scope.query.limit = 5;
+});
+```
 
+And remember to hide pagination when you are in cardMode, as it doesn't make sense to use with infinite scrolling on.
+```
+<md-table-pagination ng-hide="cardModeOn()"
+```
+## Card Actions
+
+Just add as a <td> and hide it when not needed:
+
+```
+<td md-cell ng-show="cardModeOn()">
+  <md-card-actions>
+    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 1"><span class="ng-scope">Action 1</span></button>
+    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 2"><span class="ng-scope">Action 2</span></button>
+  </md-card-actions>
+</td>
+```
 
 
 # Testing
@@ -692,7 +573,4 @@ To serve and keep watching for changes in test files, run grunt
 Some things to keep in mind when upgrading:
 - Try to start from the working Demo
 - Use ng-click whenever possible (for example, for the behaviour when clicking in a row)
-- As the responsive table and the normal one have different structure, you will have to change the way you iterate through
-the elements, be careful with that.
-- For the responsive table, due to its structure, the headers will have to be explicit declared, which means no ng-repeat :(
 - And, of course, always check the documentation (this file)
