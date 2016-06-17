@@ -58,12 +58,6 @@ function mdTablePagination() {
     };
 
     self.onPaginationChange = function () {
-
-      $timeout(function(){
-        // scroll to the beginning of the table
-        angular.element(document).duScrollToElementAnimated($element.parent(), 0, 1000);
-      }, 0);
-
       if(angular.isFunction(self.onPaginate)) {
         $mdUtil.nextTick(function () {
           self.onPaginate(self.page, self.limit);

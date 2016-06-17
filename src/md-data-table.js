@@ -1,1 +1,1 @@
-angular.module('md.data.table', ['md.table.templates', 'duScroll', 'infinite-scroll']);
+angular.module('md.data.table', ['md.table.templates', 'infinite-scroll']);

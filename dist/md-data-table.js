@@ -168,7 +168,7 @@ angular.module('navigate-next.html', []).run(['$templateCache', function($templa
 }]);
 
 
-angular.module('md.data.table', ['md.table.templates', 'duScroll', 'infinite-scroll']);
+angular.module('md.data.table', ['md.table.templates', 'infinite-scroll']);
 
 
 angular.module('md.data.table').directive('mdBody', mdBody);
@@ -312,21 +312,6 @@ function mdColumn($compile, $mdUtil, $timeout) {
     }
 
     function setOrder() {
-      // if we are in responsive-mode
-      // scroll to the beginning of the table
-      // obs.: no exception is thrown in case of the DOM not being formatted the way we expect
-      // ~.hasClass will just return false instead
-      var table = element.parent().parent().parent().parent().parent().parent().parent();
-      if (table.hasClass('md-data-table-responsive')){
-        var container = table.parent().parent();
-
-        $timeout(function(){
-          angular.element(document).duScrollToElementAnimated(container, 0, 1000);
-        }, 1000);
-
-      }
-
-
       scope.$applyAsync(function () {
         if(isActive()) {
           headCtrl.order = scope.getDirection() === 'md-asc' ? '-' + scope.orderBy : scope.orderBy;
@@ -1992,12 +1977,6 @@ function mdTablePagination() {
     };
 
     self.onPaginationChange = function () {
-
-      $timeout(function(){
-        // scroll to the beginning of the table
-        angular.element(document).duScrollToElementAnimated($element.parent(), 0, 1000);
-      }, 0);
-
       if(angular.isFunction(self.onPaginate)) {
         $mdUtil.nextTick(function () {
           self.onPaginate(self.page, self.limit);
