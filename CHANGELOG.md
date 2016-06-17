@@ -2,7 +2,7 @@
 
 
 
-#### Version 0.10.9
+#### Version 0.10.13
 ###### June 17, 2016
 **Rewrite**
 Rewrote the responsiveness approach to use the same table, as opposed to having two different tables.
@@ -14,7 +14,7 @@ Rewrote the responsiveness approach to use the same table, as opposed to having 
 
 
 
-#### Version 0.10.13
+#### Version 0.10.9
 ###### April 26, 2016
 **Bug Fix**
 
