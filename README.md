@@ -11,6 +11,7 @@ This repository is a fork from [daniel-nagy](https://github.com/daniel-nagy/md-d
 * [Responsiveness](#responsiveness)
 * [Testing](#testing)
 * [Upgrading](#upgrading)
+* [Not supported](#not-supported)
 
 ## License
 
@@ -72,6 +73,7 @@ angular.module('myApp', [require('angular-material-data-table')]);
 * [Row Selection](#row-selection)
 * [Table Progress] (#table-progress)
 * [Table Toolbars](#table-toolbars)
+# [Card Mode(Responsive)](#card-mode)
 
 **Earlier Versions**
 
@@ -257,6 +259,19 @@ Table cells have a `md-placeholder` CSS class that you can use for placeholder t
   {{dessert.comment || 'Add a comment'}}
 </td>
 ```
+
+### Dialog Editing
+| Attribute    | Target    | Type                       | Description |
+| :----------- | :-------- | :------------------------- | :---------- |
+| `mdEditable` | `mdCell` | `string` :{'text', 'numeric'} | Whether the cell should have inline editing  |
+| `mdRowUpdateCallback` | `mdTable` | `function` | Callback function to be called after a row is edited  |
+
+
+**Example**
+```
+<td md-cell md-editable="text">{{dessert.name}}</td>
+```
+
 
 ### Inline Menus
 
@@ -452,6 +467,66 @@ Observe that Calories is the second column in the table. Therefore, we need to o
 
 > You may need to manually correct the the text alignment and cell padding if you use `colspan`.
 
+### Responsiveness (aka Card mode)
+
+You will have to create a function/variable on the page's scope to keep track on wether the responsiveness should be activated. For example, for the NutritionApp we use:
+
+```javascript
+$scope.cardModeOn = function(){ return !$mdMedia('gt-sm'); }
+```
+
+After that you have to tell md-data-table of that variable:
+```
+<table data-md-table md-card-mode="cardModeOn()">
+```
+
+Now, if you want infinite scroll for the card mode (and you probably want), add this to the ```<tbody>```:
+```
+<tbody md-body infinite-scroll='nextPageInfiniteScroll()'>
+```
+
+This function should be acessible from the page's scope. It will be called when the user reaches the end of the table, so this function should load more data.
+As each one has a different implementation for loading data, I will leave one as an example. Just **remember to do nothing when you are NOT in cardMode.**
+```javascript
+$scope.nextPageInfiniteScroll = function(){
+  // we only want the infinite scroll to work with
+  if (!$scope.cardModeOn()) return;
+
+
+  if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
+  $scope.query.limit += 5;
+}
+```
+
+You probably want to reset the status (such as the current page) when the user toggle between card mode and normal mode, do as:
+```javascript
+$scope.$watch($scope.cardModeOn, function(cardMode){
+  // if we are in cardMode, let's start from page 1
+  if (cardMode) $scope.query.page = 1;
+  //otherwise, let's set the page limit back to the normal
+  else $scope.query.limit = 5;
+});
+```
+
+And remember to hide pagination when you are in cardMode, as it doesn't make sense to use with infinite scrolling on.
+```
+<md-table-pagination ng-hide="cardModeOn()"
+```
+#### Card Actions
+
+Just add as a <td> and hide it when not needed:
+
+```
+<td md-cell ng-show="cardModeOn()">
+  <md-card-actions>
+    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 1"><span class="ng-scope">Action 1</span></button>
+    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 2"><span class="ng-scope">Action 2</span></button>
+  </md-card-actions>
+</td>
+```
+
+
+
 ## Contributing
 
 **Requires**
@@ -501,63 +576,6 @@ grunt build
 
 Create a pull request!
 
-# Responsiveness (aka Card mode)
-
-You will have to create a function/variable on the page's scope to keep track on wether the responsiveness should be activated. For example, for the NutritionApp we use:
-
-```javascript
-$scope.cardModeOn = function(){ return !$mdMedia('gt-sm'); }
-```
-
-After that you have to tell md-data-table of that variable:
-```
-<table data-md-table md-card-mode="cardModeOn()">
-```
-
-Now, if you want infinite scroll for the card mode (and you probably want), add this to the ```<tbody>```:
-```
-<tbody md-body infinite-scroll='nextPageInfiniteScroll()'>
-```
-
-This function should be acessible from the page's scope. It will be called when the user reaches the end of the table, so this function should load more data.
-As each one has a different implementation for loading data, I will leave one as an example. Just **remember to do nothing when you are NOT in cardMode.**
-```javascript
-$scope.nextPageInfiniteScroll = function(){
-  // we only want the infinite scroll to work with
-  if (!$scope.cardModeOn()) return;
-
-
-  if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
-  $scope.query.limit += 5;
-}
-```
-
-You probably want to reset the status (such as the current page) when the user toggle between card mode and normal mode, do as:
-```javascript
-$scope.$watch($scope.cardModeOn, function(cardMode){
-  // if we are in cardMode, let's start from page 1
-  if (cardMode) $scope.query.page = 1;
-  //otherwise, let's set the page limit back to the normal
-  else $scope.query.limit = 5;
-});
-```
-
-And remember to hide pagination when you are in cardMode, as it doesn't make sense to use with infinite scrolling on.
-```
-<md-table-pagination ng-hide="cardModeOn()"
-```
-## Card Actions
-
-Just add as a <td> and hide it when not needed:
-
-```
-<td md-cell ng-show="cardModeOn()">
-  <md-card-actions>
-    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 1"><span class="ng-scope">Action 1</span></button>
-    <button class="md-button md-default-theme md-ink-ripple" type="button" aria-label="Action 2"><span class="ng-scope">Action 2</span></button>
-  </md-card-actions>
-</td>
-```
 
 
 # Testing
@@ -574,3 +592,6 @@ Some things to keep in mind when upgrading:
 - Try to start from the working Demo
 - Use ng-click whenever possible (for example, for the behaviour when clicking in a row)
 - And, of course, always check the documentation (this file)
+
+# Not supported
+- Selection on card mode

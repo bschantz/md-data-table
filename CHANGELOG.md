@@ -1,7 +1,21 @@
 ## Change Log
 
-#### Version 0.10.9
+
+#### Version 0.10.13
 ###### April 26, 2016
+
+
+#### Version 0.10.9
+###### June 17, 2016
+**Rewrite**
+Rewrote the responsiveness approach to use the same table, as opposed to having two different tables.
+
+**New Features**
+* Filtering available in the table header for card mode.
+* Infinite scrolling for card mode.
+* (Possible to have) Actions for each card
+
+
 
 **Bug Fix**
 
@@ -98,7 +112,7 @@
     <!-- use item.id as the unique identifier -->
     <tr md-row md-select="item" md-select-id="id" md-auto-select ng-repeat="item in items">
   ```
-  
+
 * Some folks do not want the pagination limit options to be enabled. To compensate, the pagination limit options must now be enabled with the `mdLimitOptions` attribute. The `mdLimitOptions` attribute is a replacement of the `mdOptions` attribute and the default limit options have been removed.
 
   ```html
