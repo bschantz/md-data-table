@@ -37,7 +37,7 @@ angular.module('nutritionApp').controller('nutritionController', ['$http', '$mdM
     if (!$scope.cardModeOn) return;
 
     console.log('next page');
-    if ($scope.query.limit + 5 > $scope.desserts.count) return;
+    if ($scope.query.limit + 5 > Math.ceil($scope.desserts.count/5) * 5) return;
     $scope.query.limit += 5;
   }
 

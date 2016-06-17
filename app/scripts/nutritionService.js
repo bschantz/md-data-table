@@ -2,7 +2,7 @@ angular.module('nutritionApp').factory('nutritionService', function() {
   'use strict';
 
   var desserts = {
-    'count': 11,
+    'count': 13,
     'data': [
       {
         'id': '1',

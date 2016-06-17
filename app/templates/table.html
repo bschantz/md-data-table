@@ -61,7 +61,7 @@
           <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
           <th md-column data-md-desc><span>Note</span></th>
           <th md-column data-md-order-by="comment">
-            <md-icon>comments</md-icon>
+            <!-- <md-icon>comments</md-icon> -->
             <span>Comments</span>
           </th>
         </tr>
@@ -86,6 +86,6 @@
     </table>
 </md-table-container>
 
-    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{desserts.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="onPaginate"></md-table-pagination>
+    <md-table-pagination ng-hide="cardModeOn()" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{desserts.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="onPaginate"></md-table-pagination>
   </md-card>
 </md-content>

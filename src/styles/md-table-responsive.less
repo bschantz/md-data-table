@@ -1,7 +1,7 @@
 
-.md-table.md-table.md-data-table-card-list > thead{
-  display: none;
-}
+// .md-table.md-table.md-data-table-card-list > thead{
+//   display: none;
+// }
 
 .md-table.md-table.md-data-table-card-list > tbody > tr.md-row{
   height: initial;
@@ -41,6 +41,10 @@
   white-space: nowrap;
 }
 
+.md-data-table-card-list .card-list-header th.md-column.md-checkbox-column{
+  display: none;
+}
+
 .table-striped.md-table.md-data-table-card-list {
   background-color: rgb(250,250,250);
 }
@@ -68,4 +72,56 @@
 
 .table-striped.md-table.md-data-table-card-list > tbody > tr[ng-click]:hover{
   cursor: pointer;
+}
+
+
+// header with ordering
+md-menu-item.md-column {
+  color: @md-dark-secondary;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+
+  &.md-sort {
+    cursor: pointer;
+  }
+
+  md-icon {
+    height: 16px;
+    width: 16px;
+    font-size: 16px !important;
+    line-height: 16px !important;
+
+    &.md-sort-icon {
+      color: @md-dark-disabled;
+      opacity: 0.5;
+      transition: transform 0.25s, opacity 0.25s;
+
+      &.md-asc {
+        transform: rotate(0deg);
+      }
+
+      &.md-desc {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:not(:first-child) {
+      margin-left: 8px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+  &.md-active,
+  &.md-active md-icon {
+    color: @md-dark;
+  }
+
+  &:hover md-icon.md-sort-icon,
+  &.md-active md-icon.md-sort-icon {
+    opacity: 1;
+  }
 }
