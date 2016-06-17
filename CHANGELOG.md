@@ -1,9 +1,6 @@
 ## Change Log
 
 
-#### Version 0.10.13
-###### April 26, 2016
-
 
 #### Version 0.10.9
 ###### June 17, 2016
@@ -17,6 +14,8 @@ Rewrote the responsiveness approach to use the same table, as opposed to having 
 
 
 
+#### Version 0.10.13
+###### April 26, 2016
 **Bug Fix**
 
 * Removing one time binding from pagination limit options.
