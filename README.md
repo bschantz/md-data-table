@@ -71,9 +71,9 @@ angular.module('myApp', [require('angular-material-data-table')]);
 * [Numeric Columns](#numeric-columns)
 * [Pagination](#pagination)
 * [Row Selection](#row-selection)
-* [Table Progress] (#table-progress)
+* [Table Progress](#table-progress)
 * [Table Toolbars](#table-toolbars)
-# [Card Mode(Responsive)](#card-mode)
+* [Card Mode(Responsive)](#card-mode)
 
 **Earlier Versions**
 
@@ -467,7 +467,7 @@ Observe that Calories is the second column in the table. Therefore, we need to o
 
 > You may need to manually correct the the text alignment and cell padding if you use `colspan`.
 
-### Responsiveness (aka Card mode)
+### Card Mode
 
 You will have to create a function/variable on the page's scope to keep track on wether the responsiveness should be activated. For example, for the NutritionApp we use:
 
