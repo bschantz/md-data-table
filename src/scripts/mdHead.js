@@ -40,7 +40,9 @@ function mdHead($compile, $interpolate) {
       tElement.append('<tr md-row class="card-list-header">\
         <th>\
           <md-menu>\
-            <md-button class="md-icon-button" style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Order by"><md-icon>more_vert</md-icon></md-button>\
+            <md-button class="md-icon-button" style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Order by">\
+            <md-icon><svg width="24" height="24" viewBox="0 0 24 24" id="ic_more_vert_24px" x="24" y="96"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></md-icon>\
+            </md-button>\
             <md-menu-content>\ '
               +  menuItems.join("") +
             '</md-menu-content>\
