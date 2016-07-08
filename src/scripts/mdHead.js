@@ -40,7 +40,7 @@ function mdHead($compile, $interpolate) {
       tElement.append('<tr md-row class="card-list-header">\
         <th>\
           <md-menu>\
-            <md-button style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Order by">\
+            <md-button class="md-data-table-sort-by-icon" style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Sort by">\
             Sort by\
             </md-button>\
             <md-menu-content>\ '
