@@ -1,7 +1,7 @@
 <div class="page-select" ng-if="$pagination.showPageSelect()">
   <div class="label">{{$pagination.label.page}}</div>
 
-  <md-select virtual-page-select total="{{$pagination.pages()}}" class="md-table-select" ng-model="$pagination.page" md-container-class="md-pagination-select" ng-change="$pagination.onPaginationChange()" ng-disabled="$pagination.disabled" aria-label="Page">
+  <md-select virtual-page-select placeholder="page" total="{{$pagination.pages()}}" class="md-table-select" ng-model="$pagination.page" md-container-class="md-pagination-select" ng-change="$pagination.onPaginationChange()" ng-disabled="$pagination.disabled" aria-label="Page">
     <md-content>
       <md-option ng-repeat="page in $pageSelect.pages" ng-value="page">{{page}}</md-option>
     </md-content>

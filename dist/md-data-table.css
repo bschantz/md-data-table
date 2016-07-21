@@ -62,27 +62,11 @@ md-edit-dialog > .md-actions .md-button + .md-button {
   color: rgba(0, 0, 0, 0.54);
   border-top: 1px rgba(0, 0, 0, 0.12) solid;
 }
-.md-table-pagination md-select {
-  -ms-flex-pack: end;
-      justify-content: flex-end;
-  min-width: 64px;
+.md-table-pagination md-select.md-table-select {
+  margin-bottom: 5px;
 }
-.md-table-pagination md-select:not([disabled]):focus .md-select-value {
-  color: rgba(0, 0, 0, 0.54);
-}
-.md-table-pagination md-select .md-select-value {
-  -ms-flex: 0 0 auto;
-      flex: 0 0 auto;
-}
-.md-table-pagination md-select .md-select-value span.md-select-icon {
-  -ms-flex-pack: center;
-      justify-content: center;
-  text-align: center;
-  margin-right: -6px !important;
-}
-.md-table-pagination md-select .md-select-value span.md-select-icon:after {
-  top: initial;
-  transform: scaleY(0.5) scaleX(1);
+.md-table-pagination md-select-value > span > div {
+  float: right;
 }
 .md-table-pagination > * {
   display: -ms-flexbox;
@@ -209,6 +193,9 @@ md-select.md-table-select > .md-select-value > span.md-select-icon:after {
 .table-striped.md-table.md-data-table-card-list > tbody > tr[ng-click]:hover {
   cursor: pointer;
 }
+.md-table.md-data-table-card-list md-select {
+  display: inline-block;
+}
 md-menu-item.md-column {
   color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
@@ -219,6 +206,8 @@ md-menu-item.md-column.md-sort {
   cursor: pointer;
 }
 md-menu-item.md-column md-icon {
+  min-height: 16px;
+  min-width: 16px;
   height: 16px;
   width: 16px;
   font-size: 16px !important;
@@ -341,6 +330,8 @@ table.md-table th.md-column.md-sort {
   cursor: pointer;
 }
 table.md-table th.md-column md-icon {
+  min-height: 16px;
+  min-width: 16px;
   height: 16px;
   width: 16px;
   font-size: 16px !important;
