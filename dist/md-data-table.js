@@ -7,7 +7,7 @@
 (function (window, angular, undefined) {
 'use strict';
 
-angular.module('md.table.templates', ['md-data-table-edit.html', 'md-table-pagination.html', 'md-table-progress.html', 'arrow-up.html', 'navigate-before.html', 'navigate-first.html', 'navigate-last.html', 'navigate-next.html']);
+angular.module('md.table.templates', ['md-data-table-edit.html', 'md-table-pagination.html', 'md-table-progress.html', 'arrow-up.html', 'mode_edit.html', 'navigate-before.html', 'navigate-first.html', 'navigate-last.html', 'navigate-next.html']);
 
 angular.module('md-data-table-edit.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('md-data-table-edit.html',
@@ -145,6 +145,15 @@ angular.module('md-table-progress.html', []).run(['$templateCache', function($te
 angular.module('arrow-up.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('arrow-up.html',
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>');
+}]);
+
+angular.module('mode_edit.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('mode_edit.html',
+    '<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">\n' +
+    '    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>\n' +
+    '    <path d="M0 0h24v24H0z" fill="none"/>\n' +
+    '</svg>\n' +
+    '');
 }]);
 
 angular.module('navigate-before.html', []).run(['$templateCache', function($templateCache) {
@@ -1000,7 +1009,7 @@ function mdEditable($mdDialog, moment, $mdTable) {
         tAttrs.$set('rowData', ngRepeat.item);
 
         // add an edit icon
-        tElement.append('<md-icon class="md-data-table-edit-icon">mode_edit</md-icon>');
+        tElement.append('<md-icon md-svg-icon="mode_edit.html" class="md-data-table-edit-icon"></md-icon>');
 
         return link;
     }
