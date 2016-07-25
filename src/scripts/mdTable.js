@@ -247,7 +247,7 @@ function mdTable($parse) {
         if (typeof self.rowUpdateCallback === 'function') {
             //execute the callback for each row
             var i = self.dirtyItems.length;
-            var callback = self.rowUpdateCallback;
+            var callback = self.rowUpdateCallback();
             var errorCallback = function () { //error callback
                 onError(item.oldItem);
             };
@@ -273,7 +273,7 @@ function mdTable($parse) {
         if (typeof self.rowUpdateCallback === 'function') {
             //execute the callback for each row
             var i = self.dirtyItems.length;
-            var callback = self.rowUpdateCallback;
+            var callback = self.rowUpdateCallback();
             while (i--) {
                 var item = self.dirtyItems[i];
                 callback({ item: item });
