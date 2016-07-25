@@ -253,7 +253,7 @@ function mdTable($parse) {
             };
             while (i--) {
                 var item = self.dirtyItems[i];
-                callback({ item: item });
+                callback(item);
                 self.dirtyItems.splice(i, 1); //remove the item from array
             }
         }
@@ -276,7 +276,7 @@ function mdTable($parse) {
             var callback = self.rowUpdateCallback();
             while (i--) {
                 var item = self.dirtyItems[i];
-                callback({ item: item });
+                callback(item);
                 self.dirtyItems.splice(i, 1); //remove the item from array
             }
         }

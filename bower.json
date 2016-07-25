@@ -3,8 +3,8 @@
   "version": "0.10.15",
   "description": "Material Design data table.",
   "main": [
-    "dist/md-data-table.js",
-    "dist/md-data-table.css"
+    "dist/md-data-table.min.js",
+    "dist/md-data-table.min.css"
   ],
   "repository": {
     "type": "git",
