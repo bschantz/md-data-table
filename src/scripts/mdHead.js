@@ -29,26 +29,24 @@ function mdHead($compile, $interpolate) {
 
 
         angular.forEach(angular.element(el)[0].attributes, function(attribute){
-          attributes.push(attribute.name + "=" + '"' + attribute.value + '"');
+          attributes.push(attribute.name + '=' + '"' + attribute.value + '"');
         });
 
         // change tag name from tr to md-menu-item
-        var t = $interpolate('<md-menu-item {{attrs}}>{{content}}</md-menu-item>')({attrs: attributes.join(" "), content: content})
+        var t = $interpolate('<md-menu-item {{attrs}}>{{content}}</md-menu-item>')({attrs: attributes.join(' '), content: content});
         menuItems.push(t);
       });
 
-      tElement.append('<tr md-row class="card-list-header">\
-        <th>\
-          <md-menu>\
-            <md-button class="md-data-table-sort-by-icon" style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Sort by">\
-            Sort by\
-            </md-button>\
-            <md-menu-content>\ '
-              +  menuItems.join("") +
-            '</md-menu-content>\
-          </md-menu>\
-        </th>\
-      </tr>');
+      tElement.append('<tr md-row class="card-list-header">' +
+        '<th>' +
+          '<md-menu>' +
+            '<md-button class="md-data-table-sort-by-icon" style="float: right;" ng-click="$mdOpenMenu($event)" aria-label="Sort by">' +
+            'Sort by' +
+            '</md-button>' +
+            '<md-menu-content> ' + menuItems.join('') + '</md-menu-content>' +
+          '</md-menu>' +
+        '</th>' +
+      '</tr>');
     }
 
 
@@ -74,15 +72,17 @@ function mdHead($compile, $interpolate) {
           // normal mode
           if (!newValue){ tr.className = (tr.className + ' ng-hide'); }
           // card mode
-          else tr.className = tr.className.replace('ng-hide', '');
-
+          else {
+            tr.className = tr.className.replace('ng-hide', '');
+          }
         }else {
           // normal mode
           if (!newValue){ tr.className = tr.className.replace('ng-hide', ''); }
 
           // card mode
-          else tr.className = (tr.className + ' ng-hide');
-
+          else {
+            tr.className = (tr.className + ' ng-hide');
+          }
         }
       });
 

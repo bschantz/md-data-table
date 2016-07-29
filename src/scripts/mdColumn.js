@@ -2,7 +2,7 @@
 
 angular.module('md.data.table').directive('mdColumn', mdColumn);
 
-function mdColumn($compile, $mdUtil, $timeout) {
+function mdColumn($compile, $mdUtil) {
 
   function compile(tElement) {
     tElement.addClass('md-column');

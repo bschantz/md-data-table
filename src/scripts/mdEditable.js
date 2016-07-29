@@ -37,7 +37,7 @@ function mdEditableDialogController($scope, $mdDialog, editType, fieldMaxLength,
         // I didn't use angular.element because it would require jquery
         // we can use querySelector instead
         // TODO: start looking from a more specific point, instead of 'document'
-        $form = angular.element(document.querySelector('form[name="inlineEditForm"]'))
+        $form = angular.element(document.querySelector('form[name="inlineEditForm"]'));
         // $form = angular.element('form[name="inlineEditForm"]');
 
 
@@ -143,8 +143,9 @@ function mdEditable($mdDialog, moment, $mdTable) {
                     clickOutsideToClose: true
                 })
                 .then(function (object) {
-                    if (angular.isUndefined(object)) // the dialog was canceled
+                    if (angular.isUndefined(object)) { // the dialog was canceled
                         return;
+                    }
                     scope.data = object.data;
                     tableCtrl.processEdit(rowData, attrs.data, scope.data, function (oldItem) { //error callback
                         scope.rowData = oldItem; //revert the object

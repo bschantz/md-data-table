@@ -8,7 +8,7 @@ function mdTablePagination() {
     tElement.addClass('md-table-pagination');
   }
 
-  function Controller($attrs, $mdUtil, $scope, $element, $timeout) {
+  function Controller($attrs, $mdUtil, $scope) {
     var self = this;
     var defaultLabel = {
       page: 'Page:',
