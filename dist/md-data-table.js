@@ -1934,6 +1934,8 @@ function mdTable($parse) {
   };
 }
 
+mdTable.$inject = ['$parse'];
+
 
 angular.module('md.data.table').directive('mdTablePagination', mdTablePagination);
 
