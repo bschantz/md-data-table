@@ -26,7 +26,14 @@
     "bower_components",
     "node_modules",
     "src",
-    "Gruntfile.js"
+    "server",
+    "tests",
+    "Gruntfile.js",
+    "Dockerfile",
+    "index.js",
+    "README.md",
+    "protractor.conf.js",
+    "karma.conf.js"
   ],
   "dependencies": {
     "angular": "1.5.5",
