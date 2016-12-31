@@ -309,3 +309,5 @@ function mdTable($parse) {
     }
   };
 }
+
+mdTable.$inject = ['$parse'];

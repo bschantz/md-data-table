@@ -2,7 +2,7 @@
  * Angular Material Data Table
  * https://github.com/daniel-nagy/md-data-table
  * @license MIT
- * v0.10.16
+ * v0.10.18
  */
 (function (window, angular, undefined) {
 'use strict';
@@ -1933,6 +1933,8 @@ function mdTable($parse) {
     }
   };
 }
+
+mdTable.$inject = ['$parse'];
 
 
 angular.module('md.data.table').directive('mdTablePagination', mdTablePagination);
